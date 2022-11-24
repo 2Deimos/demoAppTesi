@@ -4,7 +4,7 @@ node {
   }
   stage('SonarQube analysis') {
     withSonarQubeEnv('sonarqube-9.7.1') {
-      sh 'mvn clean package sonar:sonar'
+      bat 'mvn clean package sonar:sonar'
     } // submitted SonarQube taskId is automatically attached to the pipeline context
   }
 }

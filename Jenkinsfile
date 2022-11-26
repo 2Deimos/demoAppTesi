@@ -23,7 +23,7 @@ pipeline {
       }
     }
 
-    stage("Build & SonarQube analysis") {
+    stage("Analisi SonarQube") {
       steps {
         withSonarQubeEnv('sonarqube-9.7.1') {
           bat 'mvn sonar:sonar'

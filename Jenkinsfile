@@ -6,7 +6,7 @@ pipeline {
     stage ('Dependency Check Tool') {
       steps {
         dependencyCheck additionalArguments: '''--project 'demoAppTesi'
-        --scan './src/*'
+        --scan target/*.jar
         --format ALL''', odcInstallation: 'dependency-check'
       }
     }

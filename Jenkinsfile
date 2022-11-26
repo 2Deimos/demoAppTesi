@@ -8,6 +8,8 @@ pipeline {
         dependencyCheck additionalArguments: '''--project 'demoAppTesi'
         --scan target/*.jar
         --format ALL''', odcInstallation: 'dependency-check'
+
+        dependencyCheckPublisher pattern: ''
       }
     }
 

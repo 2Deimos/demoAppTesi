@@ -3,11 +3,19 @@ pipeline {
 
   stages {
 
+    stage("Build") {
+      steps {
+          bat 'mvn clean package'
+        }
+    }
+
     stage ('Dependency Check Tool') {
       steps {
-        dependencyCheck additionalArguments: '''--project 'demoAppTesi'
+        dependencyCheck additionalArguments: '''
+        --project 'demoAppTesi'
         --scan target/*.jar
-        --format XML --format HTML''', odcInstallation: 'dependency-check'
+        --format XML --format HTML
+        ''', odcInstallation: 'dependency-check'
 
         dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
       }
@@ -16,7 +24,7 @@ pipeline {
     stage("Build & SonarQube analysis") {
       steps {
         withSonarQubeEnv('sonarqube-9.7.1') {
-          bat 'mvn clean package sonar:sonar'
+          bat 'mvn sonar:sonar'
           }
         }
     }

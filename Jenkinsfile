@@ -14,7 +14,8 @@ pipeline {
         dependencyCheck additionalArguments: '''
         --project 'demoAppTesi'
         --scan target/*.jar
-        --format XML --format HTML
+        --out target/
+        --format ALL
         ''', odcInstallation: 'dependency-check'
 
         dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'

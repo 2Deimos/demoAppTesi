@@ -16,6 +16,7 @@ pipeline {
         --scan target/*.jar
         --out target/dependency-check-report.xml
         --format XML
+        --prettyPrint
         ''', odcInstallation: 'dependency-check'
 
         dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'

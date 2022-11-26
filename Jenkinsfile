@@ -2,16 +2,11 @@ pipeline {
   agent any
 
   stages {
-    stage('Download from SCM') {
-      steps {
-        git 'https://github.com/2Deimos/demoAppTesi.git'
-      }
-    }
 
     stage ('Dependency Check Tool') {
       steps {
-        dependencyCheck additionalArguments: '''--project demoAppTesi
-        --scan src/
+        dependencyCheck additionalArguments: '''--project 'demoAppTesi'
+        --scan './src/*'
         --format ALL''', odcInstallation: 'dependency-check'
       }
     }
@@ -19,7 +14,7 @@ pipeline {
     stage("Build & SonarQube analysis") {
       steps {
         withSonarQubeEnv('sonarqube-9.7.1') {
-          sh 'mvn clean package sonar:sonar'
+          bat 'mvn clean package sonar:sonar'
           }
         }
     }

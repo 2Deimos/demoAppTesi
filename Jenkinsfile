@@ -17,6 +17,7 @@ pipeline {
         --out target/dependency-check-report.xml
         --format XML
         --prettyPrint
+        --suppression ./
         ''', odcInstallation: 'dependency-check'
 
         dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'

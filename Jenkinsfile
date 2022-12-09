@@ -17,7 +17,6 @@ pipeline {
         --out target/dependency-check-report.xml
         --format XML
         --prettyPrint
-        --suppression owasp-suppressions.xml
         ''', odcInstallation: 'dependency-check'
         
         dependencyCheckPublisher failedTotalCritical: 1, 
